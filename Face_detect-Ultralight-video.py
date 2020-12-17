@@ -6,7 +6,6 @@ import dlib
 import numpy as np
 from imutils import face_utils
 from box_utils import *
-
 import onnx
 import onnxruntime as ort
 from onnx_tf.backend import prepare
