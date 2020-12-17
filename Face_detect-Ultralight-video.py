@@ -1,13 +1,6 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Dec 16 18:48:52 2020
-
-@author: Pragadeesh
-"""
-
 from time import process_time
 import os
-os.chdir("C:/Users/Pragadeesh/Documents/Resolute Ai/Intern/Task 2/Ultra_light")
+os.chdir("..../face_detection_ultra-light") #path
 import cv2
 import dlib
 import numpy as np
@@ -18,15 +11,15 @@ import onnx
 import onnxruntime as ort
 from onnx_tf.backend import prepare
 
-video_capture = cv2.VideoCapture('C:/Users/Pragadeesh/Documents/Resolute Ai/Intern/Task 2/Ultra_light/vid7.mp4')
+video_capture = cv2.VideoCapture('video.mp4')
 
-onnx_path = 'C:/Users/Pragadeesh/Documents/Resolute Ai/Intern/Task 2/Ultra_light/models/ultra_light_640.onnx'
+onnx_path = '/models/ultra_light_640.onnx' #path
 onnx_model = onnx.load(onnx_path)
 predictor = prepare(onnx_model)
 ort_session = ort.InferenceSession(onnx_path)
 input_name = ort_session.get_inputs()[0].name
 
-shape_predictor = dlib.shape_predictor('C:/Users/Pragadeesh/Documents/Resolute Ai/Intern/Task 2/Ultra_light/shape_predictor_5_face_landmarks.dat')
+shape_predictor = dlib.shape_predictor('/face_detection_ultra-light/shape_predictor_5_face_landmarks.dat') #path
 # fa = face_utils.facealigner.FaceAligner(shape_predictor, desiredFaceWidth=112, desiredLeftEye=(0.3, 0.3))
 
 pro_time=[]
