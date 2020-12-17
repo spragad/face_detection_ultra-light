@@ -1,11 +1,5 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Dec 16 17:43:06 2020
-
-@author: Pragadeesh
-"""
 import os
-os.chdir("C:/Users/Pragadeesh/Documents/Resolute Ai/Intern/Task 2/Ultra_light")
+os.chdir("..../face_detection_ultra-light")
 import cv2
 import time
 import numpy as np
@@ -46,7 +40,7 @@ def predict(width, height, confidences, boxes, prob_threshold, iou_threshold=0.5
 
 
 
-onnx_path = 'C:/Users/Pragadeesh/Documents/Resolute Ai/Intern/Task 2/Ultra_light/models/ultra_light_640.onnx'
+onnx_path = '.../models/ultra_light_640.onnx'
 onnx_model = onnx.load(onnx_path)
 onnx.checker.check_model(onnx_model)
 onnx.helper.printable_graph(onnx_model.graph)
@@ -55,7 +49,7 @@ ort_session = ort.InferenceSession(onnx_path)
 
 input_name = ort_session.get_inputs()[0].name
 
-raw_img = cv2.imread("C:/Users/Pragadeesh/Documents/Resolute Ai/Intern/Task 2/Ultra_light/faces-in-a-crowd3.jpg")
+raw_img = cv2.imread("faces-in-a-crowd.jpg")
 h, w, _ = raw_img.shape
 img = cv2.cvtColor(raw_img, cv2.COLOR_BGR2RGB)
 img = cv2.resize(img, (640, 480))
@@ -80,7 +74,7 @@ for i in range(boxes.shape[0]):
 # cv2.putText(raw_img, text, (20, 20), font, 0.5, (255, 255, 255), 1)
 # cv2.imwrite(os.path.join('TestOutput', f'{model}_{scale}_{filename}'), raw_img)
 # raw_img = draw_labels_and_boxes(raw_img, boxes, confidences, classids, idxs, colors, labels)
-cv2.imwrite('C:/Users/Pragadeesh/Documents/Resolute Ai/Intern/Task 2/Ultra_light/faces-in-a-crowd3_detd.jpg', raw_img)
+cv2.imwrite('faces-in-a-crowd_detd.jpg', raw_img)
 while True:
     cv2.imshow('Result', raw_img)
     if cv2.waitKey(1) & 0xFF == ord('q'):
